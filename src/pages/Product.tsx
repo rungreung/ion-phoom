@@ -15,14 +15,36 @@ import {
   IonIcon,
   IonLabel,
   IonButton,
+  IonImg,
 } from "@ionic/react";
 import React from "react";
 import "./Page.css";
 import { pin, wifi, wine, warning, walk } from "ionicons/icons";
 
-// interface Prodouct {
-//   title : string,
-//   type :
+interface prodouct {
+  title: string;
+  price: number;
+  stock: number;
+  imge: string;
+  description: string;
+}
+
+const porsducts: prodouct[] = [
+  {
+    title: "CPU",
+    price: 300,
+    stock: 300,
+    imge: "./images/cat1.jpg",
+    description: "หน่วยประมาลผล",
+  },
+  {
+    title: "RAM",
+    price: 200,
+    stock: 3000,
+    imge: "",
+    description: "หน่วยประมาลผล",
+  },
+];
 
 const Prodouct: React.FC = () => {
   return (
@@ -37,18 +59,20 @@ const Prodouct: React.FC = () => {
       </IonHeader>
 
       <IonContent fullscreen>
-        <IonCard>
-          <IonCardHeader>
-            <IonCardTitle>ชื่อสินค้า</IonCardTitle>
-            <IonCardSubtitle>รายละเอียด</IonCardSubtitle>
-          </IonCardHeader>
+        {porsducts.map((prodouct, index) => {
+          return (
+            <IonCard key={index}>
+              <IonCardHeader>
+                <IonCardTitle>{prodouct.title}</IonCardTitle>
+                <IonCardSubtitle>ราคา {prodouct.price}</IonCardSubtitle>
+                <IonCardSubtitle>จำนวนสินค้า {prodouct.stock}</IonCardSubtitle>
+                <IonImg src={prodouct.imge} />
+              </IonCardHeader>
 
-          <IonCardContent>
-            Keep close to Nature's heart... and break clear away, once in
-            awhile, and climb a mountain or spend a week in the woods. Wash your
-            spirit clean.
-          </IonCardContent>
-        </IonCard>
+              <IonCardContent>{prodouct.description}</IonCardContent>
+            </IonCard>
+          );
+        })}
         <IonCard>
           <IonItem>
             <IonIcon icon={pin} slot="start" />
