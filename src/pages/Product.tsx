@@ -41,7 +41,7 @@ const porsducts: prodouct[] = [
     title: "RAM",
     price: 200,
     stock: 3000,
-    imge: "",
+    imge: "./images/cat1.jpg",
     description: "หน่วยประมาลผล",
   },
 ];

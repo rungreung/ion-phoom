@@ -8,6 +8,7 @@ import {
   IonToolbar,
 } from "@ionic/react";
 import React from "react";
+import { Slides } from "../../src/components/Slides";
 import "./Page.css";
 
 const Home: React.FC = () => {
@@ -21,8 +22,9 @@ const Home: React.FC = () => {
           <IonTitle>Home</IonTitle>
         </IonToolbar>
       </IonHeader>
+      <Slides />
 
-      <IonContent fullscreen>Hello World</IonContent>
+      {/* <IonContent fullscreen>Hello World</IonContent> */}
     </IonPage>
   );
 };
