@@ -14,11 +14,26 @@ import {
   IonList,
 } from "@ionic/react";
 import React, { useState } from "react";
-import "./Page.css";
+import { Link } from "react-router-dom";
+import { registerUser } from "../firebaseConfig";
 
 const Register: React.FC = () => {
-  const [text, setText] = useState<string>();
-  const [number, setNumber] = useState<number>();
+  const [fullname, setFullname] = useState("");
+  const [email, setEmail] = useState("");
+  const [passsword, setPassword] = useState("");
+  const [cpassword, setCpassword] = useState("");
+  async function register() {
+    if (passsword !== cpassword) {
+      console.log("password do not match");
+    }
+    if (email.trim() === "" || passsword.trim() === "") {
+      console.log("Email and Password are required");
+    }
+    const res = await registerUser(email, passsword);
+    if (res) {
+      console.log("You have register succssfully!");
+    }
+  }
   return (
     <IonPage>
       <IonHeader>
@@ -34,22 +49,35 @@ const Register: React.FC = () => {
         <IonList>
           <IonItem>
             <IonLabel position="floating">Full Name</IonLabel>
-            <IonInput value={text}></IonInput>
+            <IonInput
+              onIonChange={(e: any) => setFullname(e.target.value)}
+            ></IonInput>
           </IonItem>
           <IonItem>
             <IonLabel position="floating">Email</IonLabel>
-            <IonInput value={text}></IonInput>
+            <IonInput
+              onIonChange={(e: any) => setEmail(e.target.value)}
+            ></IonInput>
           </IonItem>
           <IonItem>
             <IonLabel position="floating">Password</IonLabel>
-            <IonInput value={text}></IonInput>
+            <IonInput
+              type="password"
+              onIonChange={(e: any) => setPassword(e.target.value)}
+            ></IonInput>
           </IonItem>
           <IonItem>
             <IonLabel position="floating">Confirm Password</IonLabel>
-            <IonInput value={text}></IonInput>
+            <IonInput
+              type="password"
+              onIonChange={(e: any) => setCpassword(e.target.value)}
+            ></IonInput>
           </IonItem>
+          <IonButton expand="block" onClick={register}>
+            Register
+          </IonButton>
         </IonList>
-        <IonButton expand="block">Register</IonButton>
+        <Link to="/login">หน้าเข้าสู่ระบบ</Link>
       </IonContent>
     </IonPage>
   );

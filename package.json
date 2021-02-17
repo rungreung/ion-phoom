@@ -43,5 +43,9 @@
       "last 1 safari version"
     ]
   },
-  "description": "An Ionic project"
+  "description": "An Ionic project",
+  "devDependencies": {
+    "@types/firebase": "^3.2.1",
+    "toast": "^0.3.42"
+  }
 }

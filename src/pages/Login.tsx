@@ -8,16 +8,24 @@ import {
   IonToolbar,
   IonInput,
   IonItem,
-  IonLabel,
   IonList,
   IonButton,
+  IonLabel,
 } from "@ionic/react";
 import React, { useState } from "react";
-import "./Page.css";
+import { Link } from "react-router-dom";
+import { loginUser } from "../firebaseConfig";
 
 const Login: React.FC = () => {
-  const [text, setText] = useState<string>();
-  const [number, setNumber] = useState<number>();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  async function login() {
+    const res = await loginUser(email, password);
+    if (res) {
+      console.log("Loging Success");
+    }
+  }
   return (
     <IonPage>
       <IonHeader>
@@ -32,22 +40,20 @@ const Login: React.FC = () => {
       <IonContent fullscreen>
         <IonList>
           <IonItem>
-            <IonInput
-              value={text}
-              placeholder="Username or Email"
-              onIonChange={(e) => setText(e.detail.value!)}
-            ></IonInput>
+            <IonLabel position="floating">Email</IonLabel>
+            <IonInput onIonChange={(e: any) => setEmail(e.target.value)} />
           </IonItem>
           <IonItem>
-            <IonInput
-              value={text}
-              type="password"
-              placeholder="Password"
-              onIonChange={(e) => setText(e.detail.value!)}
-            ></IonInput>
+            <IonLabel position="floating">Password</IonLabel>
+            <IonInput 
+            type="password" 
+            onIonChange={(e: any) => setPassword(e.target.value)} />
           </IonItem>
         </IonList>
-        <IonButton color="primary">ลงชื่อเข้าใช่</IonButton>
+        <IonButton expand="block" color="primary" onClick={login}>
+          ลงชื่อเข้าใช่
+        </IonButton>
+        หากคุณยังไม่ได้เป็นสมาชิก> <Link to={"/register"}>สมัคเป็นสมาชิก</Link>
       </IonContent>
     </IonPage>
   );
