@@ -47,7 +47,7 @@ const App: React.FC = () => {
             <Route path="/payment" component={Payment} exact />
             <Route path="/contact" component={Contact} exact />
 
-            <Redirect from="/" to="/page/Inbox" exact />
+            <Redirect from="/" to="/home" exact />
           </IonRouterOutlet>
         </IonSplitPane>
       </IonReactRouter>
